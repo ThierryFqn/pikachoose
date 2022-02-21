@@ -5,7 +5,7 @@
   <%= f.input :height %>
   <%= f.input :weight %>
   <%= f.input :gender, collection: Pokemon::POKEMON_GENDERS %>
-  <%= f.input :type, collection: Pokemon::POKEMON_TYPES%>
+  <%= f.input :element, collection: Pokemon::POKEMON_TYPES%>
   <%= f.input :personality, collection: Pokemon::POKEMON_PERSONALITIES %>
   <%= f.input :description %>
   <%= f.input :photo, as: :file %>
