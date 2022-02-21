@@ -4,7 +4,9 @@ class Pokemon < ApplicationRecord
   POKEMON_GENDERS = %w[male female asexual]
   POKEMON_PERSONALITY = %w[brave calm quiet docile rash gentle careful relaxing timid athlete smart]
   belongs_to :user
-
+  # ActiveStorage Cloudinary
+  has_one_attached :photo
+  # Validates
   validates :name, :day_price, :gender, :type, :personality, presence: true
   validates :types, inclusion: { in: POKEMON_TYPES, message: "Please select a type from the list" }
   validates :gender, inclusion: { in: POKEMON_GENDERS, message: "Please select a valid gender" }
