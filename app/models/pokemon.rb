@@ -7,8 +7,8 @@ class Pokemon < ApplicationRecord
   # ActiveStorage Cloudinary
   has_one_attached :photo
   # Validates
-  validates :name, :day_price, :gender, :type, :personality, presence: true
-  validates :type, inclusion: { in: POKEMON_TYPES, message: "Please select a type from the list" }
+  validates :name, :day_price, :gender, :element, :personality, presence: true
+  validates :element, inclusion: { in: POKEMON_TYPES, message: "Please select a type from the list" }
   validates :gender, inclusion: { in: POKEMON_GENDERS, message: "Please select a valid gender" }
   validates :personality, inclusion: { in: POKEMON_PERSONALITIES, message: "Please select a valid personality" }
   validates :height, :weight, numericality: { greater_than: 0 }
