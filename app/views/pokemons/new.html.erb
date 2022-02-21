@@ -1,13 +1,51 @@
-<h1>New pokemon</h1>
-<%= simple_form_for(@pokemon) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :day_price %>
-  <%= f.input :height %>
-  <%= f.input :weight %>
-  <%= f.input :gender, collection: Pokemon::POKEMON_GENDERS %>
-  <%= f.input :element, collection: Pokemon::POKEMON_TYPES%>
-  <%= f.input :personality, collection: Pokemon::POKEMON_PERSONALITIES %>
-  <%= f.input :description %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
+<div class="page-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dlwr1bikm/image/upload/v1645473081/development/pokemon-user-background_fkkm6k.png);">
+  <div class="container">
+    <h1><strong>Add</strong> my Pokemon</h1>
+    <p>Please fill in all the information</p>
+    <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-6 offset-3 mt-3">
+    <div class="form-group">
+      <h3>Information about your Pokemon</h3>
+      <%= simple_form_for(@pokemon) do |f| %>
+        <%= f.input :name %>
+        <div class="row">
+          <div class="col">
+            <%= f.input :height, placeholder: "cm", input_html: { min: '0' } %>
+          </div>
+          <div class="col">
+            <%= f.input :weight, placeholder: "kg", input_html: { min: '0' } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= f.input :gender, collection: Pokemon::POKEMON_GENDERS %>
+          </div>
+          <div class="col">
+            <%= f.input :element, collection: Pokemon::POKEMON_TYPES%>
+          </div>
+        </div>
+        <%= f.input :personality, collection: Pokemon::POKEMON_PERSONALITIES %>
+         <%= f.input :photo, as: :file %>
+    </div>
+    <div class="dropdown-divider my-3"></div>
+    <div class="form-group">
+      <h3>Your rental offer</h3>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">€</span>
+        </div>
+        <%= f.input :day_price, placeholder: 'Price per day', label: false,input_html: { class: "form-control", min: '0' }, hint: "You can change it in the future"  %>
+      </div>
+      <%= f.input :description, label: "All additionnal information", placeholder: "Policies, rent time, rules, etc" %>
+    </div>
+
+    <div class="btn btn-flat mb-4">
+      <%= f.button :submit, "Add my pokemon" %>
+    </div>
+    <% end %>
+  </div>
+</div>
