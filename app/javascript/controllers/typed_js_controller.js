@@ -5,6 +5,7 @@ import Typed from "typed.js"
 
 export default class extends Controller {
   connect() {
+    console.log('')
     new Typed(this.element, {
       strings: ["Find a Pokemon ", "Share time and experience"],
       typeSpeed: 50,
