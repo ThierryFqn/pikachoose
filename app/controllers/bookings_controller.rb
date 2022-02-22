@@ -1,9 +1,5 @@
 class BookingsController < ApplicationController
 
-  def index
-    @bookings = policy_scope(Booking).order(created_at: :desc)
-  end
-
   def new
     @booking = Booking.new
     @pokemon = Pokemon.find(params[:pokemon_id])
@@ -22,7 +18,9 @@ class BookingsController < ApplicationController
     authorize @booking
     authorize @pokemon
     if @booking.save
+      flash[:notice] = 'Your request has been sent'
       redirect_to root_path
+      # redirect_to booking_path(@booking)
     else
       render :new
     end

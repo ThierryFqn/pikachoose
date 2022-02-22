@@ -7,6 +7,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def create?
+    # record.pokemon.user != user
     true
   end
 

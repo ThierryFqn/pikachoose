@@ -4,8 +4,8 @@ class PokemonsController < ApplicationController
   end
 
   def new
-    authorize @pokemon
     @pokemon = Pokemon.new
+    authorize @pokemon
   end
 
   def create

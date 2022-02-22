@@ -19,8 +19,9 @@
           <%= f.input :end_date, label: "Date de fin", as: :date, start_year: Date.today.year,
                                               date_départ: Date.today.year + 5,
                                               order: [:day, :month, :year] %>
+        <p>Total price =  <%= @booking.total_price %> €</p>
         </div>
-        <div class="btn btn-flat mb-4">
+        <div class="btn btn-flat mb-4 text-center">
           <%= f.submit "Book my pokemon", class: "btn btn-flat mb-4" %>
         </div>
       <% end %>
