@@ -18,6 +18,9 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
     authorize @pokemon
+    @user = current_user
+    @pokemon = Pokemon.new(pokemon_params)
+    @pokemon.user = @user
     if @pokemon.save
       redirect_to root_path
     else
