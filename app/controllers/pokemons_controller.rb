@@ -4,15 +4,15 @@ class PokemonsController < ApplicationController
   end
 
   def new
-    @pokemon = Pokemon.new
     authorize @pokemon
+    @pokemon = Pokemon.new
   end
 
   def create
-    @pokemon = Pokemon.new(pokemon_params)
-    @user = current_user
-    @pokemon.user = @user
     authorize @pokemon
+    @user = current_user
+    @pokemon = Pokemon.new(pokemon_params)
+    @pokemon.user = @user
     if @pokemon.save
       redirect_to root_path
     else
