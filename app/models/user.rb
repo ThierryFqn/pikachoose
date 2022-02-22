@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # Active Storage
   has_one_attached :photo
-  
+
   has_many :pokemons, dependent: :destroy
+  has_many :bookings, dependent: :destroy
   # Validates
   validates :first_name, :last_name, presence: true
 end

@@ -6,6 +6,8 @@ class Pokemon < ApplicationRecord
   belongs_to :user
   # ActiveStorage Cloudinary
   has_one_attached :photo
+
+  has_many :bookings, dependent: :destroy
   # Validates
   validates :name, :day_price, :gender, :element, :personality, presence: true
   validates :element, inclusion: { in: POKEMON_TYPES, message: "Please select a type from the list" }
