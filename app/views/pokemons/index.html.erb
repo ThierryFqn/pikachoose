@@ -1,2 +1,5 @@
 <h1 class='text-center'> Hello </h1>
+<% @pokemons.each do |pokemon| %>
+<%= pokemon.name %>
+<% end %>
 <%= link_to 'Create a new Pokemon', new_pokemon_path %>
