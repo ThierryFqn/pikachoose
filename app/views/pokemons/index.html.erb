@@ -1,2 +1,25 @@
-<h1 class='text-center'> Hello </h1>
+<div class="page-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dlwr1bikm/image/upload/v1645473081/development/pokemon-user-background_fkkm6k.png);">
+  <div class="container">
+    <h1><strong>Pokemons</strong> disponibles</h1>
+    <p>Find your ideal companion </p>
+    <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cards">
+    <% @pokemons.each do |pokemon| %>
+      <%= link_to pokemon, class: "link-no-deco" do %>
+        <div class="card-product my-3">
+          <%= cl_image_tag pokemon.photo.key, height: 300, width: 120 %>
+          <div class="card-product-infos">
+            <h2><%= pokemon.name %></h2>
+            <p>Product description with <strong>relevant info</strong> only.</p>
+          </div>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+
 <%= link_to 'Create a new Pokemon', new_pokemon_path %>
+</div>
