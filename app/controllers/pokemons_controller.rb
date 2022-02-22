@@ -3,6 +3,12 @@ class PokemonsController < ApplicationController
     @pokemons = policy_scope(Pokemon).order(created_at: :desc)
   end
 
+  def show
+    @pokemon = Pokemon.find(params[:id])
+    @user = @pokemon.user
+    authorize @pokemon
+  end
+
   def new
     @pokemon = Pokemon.new
     authorize @pokemon

@@ -1,0 +1,35 @@
+.profil-banner {
+  background-size: cover;
+  background-position: center;
+  padding-top: 20vh;
+  height: 60vh;
+  text-align: center;
+  position: relative;
+}
+
+.profil-banner h1 {
+  margin: 0;
+  padding-bottom: 10px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 50px;
+  font-weight: 500;
+  strong {
+    color: #ffcb05;
+  }
+}
+
+.profil-banner img {
+  position: absolute;
+  bottom: -40px;
+  left: 80px;
+  background: white;
+  border-radius: 50%;
+}
+
+.profil-banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}

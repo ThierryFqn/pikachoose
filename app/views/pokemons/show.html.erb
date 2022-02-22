@@ -1,0 +1,10 @@
+<div class="profil-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dlwr1bikm/image/upload/v1645473081/development/pokemon-user-background_fkkm6k.png);">
+  <div class="container">
+    <h1>Hi, I'm <strong><%= @pokemon.name %></strong></h1>
+    <p>You can find more information about me below</p>
+    <div class="img-profil">
+      <%= cl_image_tag @pokemon.photo.key, width: 200 %>
+    </div>
+    <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+  </div>
+</div>
