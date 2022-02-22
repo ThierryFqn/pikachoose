@@ -1,8 +1,9 @@
 <div class="page-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dlwr1bikm/image/upload/v1645473081/development/pokemon-user-background_fkkm6k.png);">
   <div class="container">
-    <h1><strong>Book</strong> my Pokemon</h1>
+    <h1><strong>Book</strong> <%= @pokemon.name %></h1>
     <p>Please fill in all the information</p>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+     <%= link_to "Back", pokemon_path(@pokemon), class: "btn btn-ghost-white" %>
   </div>
 </div>
 
@@ -12,13 +13,11 @@
       <h3>Information needed to book your Pokemon</h3>
       <%= simple_form_for [@pokemon, @booking] do |f| %>
         <div class="row">
-          <%= f.input :begin_date, as: :string, required: false, input_html: {class: "datepicker"} %>
-          <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
-        <p>Total price =  <%= @booking.total_price %> €</p>
+          <%= f.input :begin_date, label: "Start of the location", as: :string, required: false, input_html: {class: "datepicker"} %>
+          <%= f.input :end_date, label: "End of the location", as: :string, required: false, input_html: {class: "datepicker"} %>
+          <p>Total price =  <%= @booking.total_price %> €</p>
         </div>
-        <div class="btn btn-flat mb-4 text-center">
-          <%= f.submit "Book my pokemon", class: "btn btn-flat mb-4" %>
-        </div>
+        <%= f.submit "Book my pokemon", class: "btn btn-flat mb-4" %>
       <% end %>
     </div>
   </div>

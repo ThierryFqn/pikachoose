@@ -8,6 +8,20 @@
   transition: opacity 0.3s ease;
 }
 
+.btn-ghost-white {
+  color: #4A4A4A;
+  background:white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  opacity: 0.8;
+  font-weight: lighter;
+  transition: opacity 0.3s ease;
+}
+
+.btn-ghost-white:hover {
+  opacity: 1;
+}
+
 .btn-ghost:hover {
   opacity: 1;
 }

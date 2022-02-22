@@ -2,8 +2,33 @@
   <div class="container">
     <h1>Hi, I'm <strong><%= @pokemon.name %></strong></h1>
     <p>You can find more information about me below</p>
-    <%= cl_image_tag @pokemon.photo.key, width: 200 %>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+    <%= link_to "Book me", new_pokemon_booking_path(@pokemon), class: "btn btn-flat" %>
+    <%= link_to "Back", pokemons_path, class: "btn btn-ghost-white" %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row my-5">
+    <div class="pokemon-infos col-sm-12 col-md-8">
+      <%= cl_image_tag @pokemon.photo.key, width: 200 %>
+      <div class="basic-infos">
+        <p>Type: <strong><%= @pokemon.element.capitalize%></strong></p>
+        <p><i class="fa-solid fa-venus-mars"></i> <%= @pokemon.gender.capitalize %></p>
+         <p><i class="fa-solid fa-up-down"></i> <%= @pokemon.height.round %>cm</p>
+         <p><i class="fa-solid fa-weight-scale"></i> <%= @pokemon.weight.round %>kg</p>
+      </div>
+      <div class="details-infos">
+        <p>Personality: <strong><%= @pokemon.personality.capitalize%></strong></p>
+        <p>Description: <strong><%= @pokemon.description.capitalize%></strong></p>
+        <h4 id="pokemon-price">€<%= @pokemon.day_price %><small>/ per day</small></h2>
+      </div>
+    </div>
+    <div class="user-infos col-sm-12 col-md-4">
+      <h3><%= @pokemon.name %>' <span>Owner</span></h3>
+      <div class="dropdown-divider my-3"></div>
+      <p><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></p>
     </div>
   </div>
 </div>
