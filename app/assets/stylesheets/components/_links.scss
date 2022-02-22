@@ -1,0 +1,9 @@
+.link-no-deco {
+  text-decoration: none;
+  color: black;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 0.7;
+    color: black;
+  }
+}

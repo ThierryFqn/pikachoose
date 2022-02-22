@@ -8,44 +8,41 @@
 
 <div class="container">
   <div class="col-6 offset-3 mt-3">
-    <div class="form-group">
-      <h3>Information about your Pokemon</h3>
-      <%= simple_form_for(@pokemon) do |f| %>
-        <%= f.input :name %>
-        <div class="row">
-          <div class="col">
-            <%= f.input :height, placeholder: "cm", input_html: { min: '0' } %>
+    <%= simple_form_for(@pokemon) do |f| %>
+      <div class="form-group">
+        <h3>Information about your Pokemon</h3>
+          <%= f.input :name %>
+          <div class="row">
+            <div class="col">
+              <%= f.input :height, placeholder: "cm", input_html: { min: '0' } %>
+            </div>
+            <div class="col">
+              <%= f.input :weight, placeholder: "kg", input_html: { min: '0' } %>
+            </div>
           </div>
-          <div class="col">
-            <%= f.input :weight, placeholder: "kg", input_html: { min: '0' } %>
+          <div class="row">
+            <div class="col">
+              <%= f.input :gender, collection: Pokemon::POKEMON_GENDERS %>
+            </div>
+            <div class="col">
+              <%= f.input :element, collection: Pokemon::POKEMON_TYPES%>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <%= f.input :gender, collection: Pokemon::POKEMON_GENDERS %>
-          </div>
-          <div class="col">
-            <%= f.input :element, collection: Pokemon::POKEMON_TYPES%>
-          </div>
-        </div>
-        <%= f.input :personality, collection: Pokemon::POKEMON_PERSONALITIES %>
-         <%= f.input :photo, as: :file %>
-    </div>
-    <div class="dropdown-divider my-3"></div>
-    <div class="form-group">
-      <h3>Your rental offer</h3>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">€</span>
-        </div>
-        <%= f.input :day_price, placeholder: 'Price per day', label: false,input_html: { class: "form-control", min: '0' }, hint: "You can change it in the future"  %>
+          <%= f.input :personality, collection: Pokemon::POKEMON_PERSONALITIES %>
+          <%= f.input :photo, as: :file %>
       </div>
-      <%= f.input :description, label: "All additionnal information", placeholder: "Policies, rent time, rules, etc" %>
-    </div>
-
-    <div class="btn btn-flat mb-4">
-      <%= f.button :submit, "Add my pokemon" %>
-    </div>
+      <div class="dropdown-divider my-3"></div>
+      <div class="form-group">
+        <h3>Your rental offer</h3>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">€</span>
+          </div>
+          <%= f.input :day_price, placeholder: 'Price per day', label: false,input_html: { class: "form-control", min: '0' }, hint: "You can change it in the future"  %>
+        </div>
+        <%= f.input :description, label: "All additionnal information", placeholder: "Policies, rent time, rules, etc" %>
+      </div>
+      <%= f.submit "Add my pokemon", class: "btn btn-flat mb-4" %>
     <% end %>
   </div>
 </div>
