@@ -2,9 +2,8 @@
   <div class="container">
     <h1>Hi, I'm <strong><%= @pokemon.name %></strong></h1>
     <p>You can find more information about me below</p>
-    <div class="img-profil">
-      <%= cl_image_tag @pokemon.photo.key, width: 200 %>
-    </div>
+    <%= cl_image_tag @pokemon.photo.key, width: 200 %>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+    </div>
   </div>
 </div>
