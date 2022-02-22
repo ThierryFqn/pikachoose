@@ -7,5 +7,5 @@ class Booking < ApplicationRecord
   validates :begin_date, presence: true
   validates :end_date, presence: true
   validates :total_price, presence: true
-  validates :status, presence: true, defautl: Booking::BOOKING_STATUS[3]
+  # validates :status, default: Booking::BOOKING_STATUS[3]
 end

@@ -1,11 +1,15 @@
 class BookingsController < ApplicationController
 
-  def show
+  def index
+    @bookings = policy_scope(Booking).order(created_at: :desc)
   end
 
   def new
     @booking = Booking.new
+    @pokemon = Pokemon.find(params[:pokemon_id])
+    @booking.pokemon = @pokemon
     authorize @booking
+    authorize @pokemon
   end
 
   def create
@@ -13,6 +17,7 @@ class BookingsController < ApplicationController
     @pokemon = Pokemon.find(params[:pokemon_id])
     @booking.pokemon = @pokemon
     @booking.user = current_user
+    @booking.status = Booking::BOOKING_STATUS[3]
     @booking.total_price = booking_price(@booking)
     authorize @booking
     authorize @pokemon
@@ -30,6 +35,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_price(booking)
-    (booking.end_date - booking.begin_date) * booking.pokemon.price
+    (booking.end_date.to_date - booking.begin_date.to_date).to_i * booking.pokemon.day_price
   end
 end

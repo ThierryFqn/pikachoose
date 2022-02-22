@@ -9,6 +9,8 @@ class PokemonsController < ApplicationController
   end
 
   def create
+    @pokemon = Pokemon.new(pokemon_params)
+    @pokemon.user = current_user
     authorize @pokemon
     @user = current_user
     @pokemon = Pokemon.new(pokemon_params)
