@@ -7,6 +7,13 @@
   align-items: center;
   border-radius: 5px;
   position: relative;
+  color:black;
+  transition: opacity box-shadow 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+    color: black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  }
 }
 
 .card-product img {
@@ -39,7 +46,7 @@
   right: 20px;
   text-align:right;
     h2 {
-      font-size: 20px;
+      font-size: 24px;
     }
     p {
       margin-top: 0;

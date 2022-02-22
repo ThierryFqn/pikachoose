@@ -1,4 +1,6 @@
 class PokemonsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @pokemons = policy_scope(Pokemon).order(created_at: :desc)
   end
