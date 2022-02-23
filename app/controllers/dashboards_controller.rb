@@ -4,6 +4,6 @@ class DashboardsController < ApplicationController
     @pokemons = current_user.pokemons
     @bookings = current_user.bookings
     @user = current_user
-    @reserved_pokemons = Booking.all.each { |booking| booking.pokemon.user = current_user }
+    @reserved_pokemons = Booking.all.select { |booking| booking.pokemon.user == @user }
   end
 end
