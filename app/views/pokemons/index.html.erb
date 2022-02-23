@@ -13,7 +13,7 @@
         <div class="card-product my-3">
           <%= cl_image_tag pokemon.photo.key, height: 300, width: 120 %>
           <div class="card-product-infos">
-            <h2><%= pokemon.name %></h2>
+            <h2><%= pokemon.name.capitalize %></h2>
             <p>Type: <strong><%= pokemon.element.capitalize%></strong></p>
             <div class="dropdown-divider my-2"></div>
             <p><i class="fa-solid fa-venus-mars"></i> <%= pokemon.gender.capitalize %></p>

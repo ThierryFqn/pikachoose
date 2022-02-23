@@ -53,3 +53,46 @@
   background: linear-gradient(#147EFF, #0F67DA);
   color: white;
 }
+
+
+.btn-cancel {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.btn-cancel:hover {
+  opacity: 1;
+}
+
+
+.btn-green {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  background: #1EDD88;
+  transition: background 0.3s ease;
+}
+
+.btn-green:hover {
+  background: #1BCB7F;
+  color: white;
+}
+
+
+.btn-red {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  background: #EF6D6D;
+  transition: background 0.3s ease;
+}
+
+.btn-red:hover {
+  background: #EF6D6D;
+  color: white;
+}
