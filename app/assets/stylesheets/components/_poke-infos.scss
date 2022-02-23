@@ -12,6 +12,10 @@
   object-fit: contain;
 }
 
+.pokemon-infos .details-infos {
+  width:50%;
+}
+
 .user-infos {
   text-align: center;
   background:white;
@@ -34,6 +38,8 @@
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  width: 50%;
+  margin: 0 auto;
  small {
    font-size: 14px;
    font-weight:300;
