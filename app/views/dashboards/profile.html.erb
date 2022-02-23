@@ -14,6 +14,8 @@
       <% @reserved_pokemons.each do |booking| %>
         <% if booking.user != current_user && booking.status == "pending" %>
           <li>Pokemon: <%= booking.pokemon.name %> | Status = <%= booking.status.capitalize %></li>
+          <%= link_to 'Accept', accepted_booking_path(booking), method: :patch %>
+          <%= link_to 'Refuse', denied_booking_path(booking), method: :patch %>
         <% end %>
       <% end %>
     </ul>
@@ -25,6 +27,7 @@
     <ul>
       <% @bookings.where(status: "pending").each do |booking|  %>
         <li><%= booking.pokemon.name %> <%= booking.status %> <%= booking.begin_date %> <%= booking.end_date %></li>
+        <%= link_to 'Cancel', cancelled_booking_path(booking), method: :patch %>
       <% end %>
     </ul>
 </div>
