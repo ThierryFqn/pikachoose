@@ -6,35 +6,61 @@
   </div>
 </div>
 
-
 <%# Liste des demandes de locations pour mes pokemons %>
- <div class="container">
+<%# NEW %>
+<div class="container">
   <h2 class="text-left cards-home-title my-5">My rent <strong>Demands<strong></h2>
-    <ul>
+  <div class="cards">
       <% @reserved_pokemons.each do |booking| %>
         <% if booking.user != current_user && booking.status == "pending" %>
-          <li>Pokemon: <%= booking.pokemon.name %> | Status = <%= booking.status.capitalize %></li>
-          <%= link_to 'Accept', accepted_booking_path(booking), method: :patch %>
-          <%= link_to 'Refuse', denied_booking_path(booking), method: :patch %>
+          <div class="card-product my-3">
+            <%= cl_image_tag booking.pokemon.photo.key, height: 300, width: 120 %>
+            <div class="card-product-infos">
+              <h2>My <%= booking.pokemon.name %></h2>
+              <p>From: <strong><%= booking.begin_date.strftime("%m/%d/%Y") %></strong></p>
+              <p>To: <strong><%= booking.end_date.strftime("%m/%d/%Y") %></strong></p>
+              <div class="dropdown-divider my-2"></div>
+              <p class="mb-3">Requester: <strong><%= booking.user.first_name %> <%= booking.user.last_name %></strong></p>
+              <%= link_to 'Accept', accepted_booking_path(booking), method: :patch, class: "btn-green link-no-deco mx-3 my-2" %>
+              <%= link_to 'Refuse', denied_booking_path(booking), method: :patch, class: "btn-red link-no-deco" %>
+            </div>
+            <div class="car-product-pricing">
+              <p>Total price:</p>
+              <h2>€<%= booking.total_price %></h2>
+            </div>
+          </div>
         <% end %>
-      <% end %>
-    </ul>
+    <% end %>
+  </div>
 </div>
 
 <%# Liste de mes demandes de locations %>
 <div class="container">
-  <h2 class="text-left cards-home-title my-5">My rent <strong>Requests<strong></h2>
-    <ul>
+  <h2 class="text-left cards-home-title my-5">My rent <strong>Requests</strong>(<%= @bookings.where(status: "pending").count %>)</h2>
+  <div class="cards">
       <% @bookings.where(status: "pending").each do |booking|  %>
-        <li><%= booking.pokemon.name %> <%= booking.status %> <%= booking.begin_date %> <%= booking.end_date %></li>
-        <%= link_to 'Cancel', cancelled_booking_path(booking), method: :patch %>
-      <% end %>
-    </ul>
+        <div class="card-product my-3">
+          <%= cl_image_tag booking.pokemon.photo.key, height: 300, width: 120 %>
+          <div class="card-product-infos">
+            <h2><%= booking.pokemon.name %></h2>
+            <p>Start Date: <strong><%= booking.begin_date.to_date %></strong></p>
+            <p>End Date: <strong><%= booking.end_date.to_date %></strong></p>
+            <div class="dropdown-divider my-2"></div>
+            <p class="mb-3">Status: <strong><%= booking.status.capitalize %></strong></p>
+            <%= link_to 'Cancel', cancelled_booking_path(booking), method: :patch, class: "btn-cancel link-no-deco" %>
+          </div>
+          <div class="car-product-pricing">
+            <p>Total price:</p>
+            <h2>€<%= booking.total_price %></h2>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </div>
 
 <%# Liste de mes pokemons %>
 <div class="container">
-  <h2 class="text-left cards-home-title my-5">All my <strong>Pokemons<strong></h2>
+  <h2 class="text-left cards-home-title my-5">All my <strong>Pokemons</strong> (<%= @pokemons.count %>)</h2>
   <div class="cards">
     <% @pokemons.each do |pokemon| %>
       <%= link_to pokemon, class: "link-no-deco" do %>
