@@ -26,6 +26,31 @@ class BookingsController < ApplicationController
     end
   end
 
+  def accepted
+    @booking = Booking.find(params[:id])
+    @booking.status = Booking::BOOKING_STATUS[0]
+    if @booking.save
+      # a changer
+      redirect_to root_path
+    else
+      # a changer
+      render :new
+    end
+  end
+
+  def denied
+    @booking = Booking.find(params[:id])
+    @booking.status = Booking::BOOKING_STATUS[1]
+    # changer path
+    @booking.save ? (redirect_to root_path) : (render :new)
+  end
+
+  def cancelled
+    @booking = Booking.find(params[:id])
+    @booking.status = Booking::BOOKING_STATUS[2]
+    @booking.save ? (redirect_to root_path) : (render :new)
+  end
+
   private
 
   def booking_params

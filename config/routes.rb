@@ -6,4 +6,11 @@ Rails.application.routes.draw do
   resources :pokemons, only: %i[index new create show] do
     resources :bookings, only: %i[new create]
   end
+  resources :bookings do
+    member do
+      patch '/accepted', to: 'bookings#accepted'
+      patch '/denied', to: 'bookings#denied'
+      patch '/cancelled', to: 'bookings#cancelled'
+    end
+  end
 end
