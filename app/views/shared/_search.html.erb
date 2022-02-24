@@ -4,9 +4,14 @@
  <div class="search-form-control form-group">
     <%= simple_form_for :search, url: pokemons_path, method: :get do |f| %>
       <div class="d-flex query-selectors">
-        <%= f.input :address, class: "form-control string required", label: false %>
-        <%= f.input :personalities, collection: Pokemon::POKEMON_PERSONALITIES,label: false, input_html: { multiple: true, data: { controller: 'select2' }} %>
-        <%= f.submit "Search", class: "btn btn-flat" %>
+        <%= f.input :address, placeholder: "Type a city...",class: "form-control string required", label: false %>
+        <%= f.input :personalities, class: "js-example-placeholder-single form-control",label: false, collection: Pokemon::POKEMON_PERSONALITIES, input_html: {multiple: true, data: {controller: 'select2', select2_options_value: {tags: true}}} %>
+        <%# <%= f.submit "Search", class: "btn btn-flat" %>
+        <button type="submit" class="btn btn-flat" name="commit" data-disable-with="Search" >
+          <i class="fas fa-search"></i>
+        </button>
       </div>
     <% end %>
 </div>
+
+<%# <input type="submit" name="commit" value="Search" class="btn btn-flat" data-disable-with="Search"> %>
