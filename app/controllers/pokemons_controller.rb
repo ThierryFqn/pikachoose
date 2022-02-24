@@ -41,6 +41,25 @@ class PokemonsController < ApplicationController
     end
   end
 
+  def edit
+    @pokemon = Pokemon.find(params[:id])
+    authorize @pokemon
+  end
+
+  def update
+    @pokemon = Pokemon.find(params[:id])
+    @pokemon.update(pokemon_params)
+    authorize @pokemon
+    redirect_to pokemon_path(@pokemon)
+  end
+
+  def destroy
+    @pokemon = Pokemon.find(params[:id])
+    @pokemon.destroy
+    authorize @pokemon
+    redirect_to dashboards_path
+  end
+
   private
 
   def pokemon_params

@@ -25,6 +25,14 @@
         <p>Description: <strong><%= @pokemon.description.capitalize%></strong></p>
 
         <h4 id="pokemon-price">€<%= @pokemon.day_price %><small>/ per day</small></h2>
+        <% if policy(@pokemon).edit? %>
+          <%= link_to "Edit", edit_pokemon_path(@pokemon)  %>
+        <% end %>
+          <% if policy(@pokemon).destroy? %>
+            <%= link_to "Delete", pokemon_path(@pokemon),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+          <% end %>
       </div>
     </div>
     <div class="booking-form col-sm-12 col-md-4">
