@@ -6,4 +6,6 @@ class DashboardsController < ApplicationController
     @user = current_user
     @reserved_pokemons = Booking.all.select { |booking| booking.pokemon.user == @user }
   end
+
+
 end
