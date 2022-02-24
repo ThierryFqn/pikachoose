@@ -23,6 +23,7 @@ class PokemonsController < ApplicationController
         image_url: helpers.asset_url("poke.png")
       }
     end
+
   end
 
   def show
