@@ -6,53 +6,120 @@
   </div>
 </div>
 
+<div class="container">
+  <%# Liste des demandes de locations pour mes pokemons %>
+    <h2 class="text-left cards-home-title mt-5"><strong>Demands</strong> for my Pokemons</h2>
+    <div class="row">
+      <div class="pending-bookings col-12 col-lg-6">
+        <h4 class="text-left mt-2">Pending(<%= @demand_pending_user.count %>)</h6>
+          <div class="dropdown-divider"></div>
+            <% @demand_pending_user.each do |booking| %>
+                <div class="card-dashboard my-3">
+                  <%= cl_image_tag booking.pokemon.photo.key, height: 300, width: 120 %>
+                  <div class="card-dashboard-infos">
+                    <h2>My <%= booking.pokemon.name %></h2>
+                    <p>From: <strong><%= booking.begin_date.strftime("%m/%d/%Y") %></strong></p>
+                    <p>To: <strong><%= booking.end_date.strftime("%m/%d/%Y") %></strong></p>
+                    <div class="dropdown-divider my-2"></div>
+                    <p class="mb-3">Requester: <strong><%= booking.user.first_name %> <%= booking.user.last_name %></strong></p>
+                    <%= link_to 'Accept', accepted_booking_path(booking), method: :patch, class: "btn-green link-no-deco mx-3 my-2" %>
+                    <%= link_to 'Refuse', denied_booking_path(booking), method: :patch, class: "btn-red link-no-deco" %>
+                  </div>
+                  <div class="car-product-pricing">
+                    <p>Total price:</p>
+                    <h2>€<%= booking.total_price %></h2>
+                  </div>
+                </div>
+          <% end %>
+      </div>
+      <div class="accepted-bookings col-12 col-lg-6">
+        <h4 class="text-left mt-2">Coming(<%= @demand_pending_user.count %>)</h6>
+          <div class="dropdown-divider"></div>
+            <% @demand_accepted_user.each do |booking| %>
+                <div class="card-dashboard my-3">
+                  <%= cl_image_tag booking.pokemon.photo.key, height: 300, width: 120 %>
+                  <div class="card-dashboard-infos">
+                    <h2>My <%= booking.pokemon.name %></h2>
+                    <p>From: <strong><%= booking.begin_date.strftime("%m/%d/%Y") %></strong></p>
+                    <p>To: <strong><%= booking.end_date.strftime("%m/%d/%Y") %></strong></p>
+                    <div class="dropdown-divider my-2"></div>
+                    <p class="mb-3">Requester: <strong><%= booking.user.first_name %> <%= booking.user.last_name %></strong></p>
+                  </div>
+                  <div class="car-product-pricing">
+                    <p>Total price:</p>
+                    <h2>€<%= booking.total_price %></h2>
+                  </div>
+                </div>
+          <% end %>
+      </div>
+    </div>
 
-<%# Liste des demandes de locations pour mes pokemons %>
- <div class="container">
-  <h2 class="text-left cards-home-title my-5">My rent <strong>Demands<strong></h2>
-    <ul>
-      <% @reserved_pokemons.each do |booking| %>
-        <% if booking.user != current_user && booking.status == "pending" %>
-          <li>Pokemon: <%= booking.pokemon.name %> | Status = <%= booking.status.capitalize %></li>
-          <%= link_to 'Accept', accepted_booking_path(booking), method: :patch %>
-          <%= link_to 'Refuse', denied_booking_path(booking), method: :patch %>
+  <%# Liste de mes demandes de locations %>
+    <h2 class="text-left cards-home-title my-5"><strong>Requests</strong></h2>
+    <div class="row">
+      <div class="pending-bookings col-12 col-lg-6">
+        <h4 class="text-left mt-2">Pending(<%= @bookings.where(status: "pending").count %>)</h6>
+          <div class="dropdown-divider"></div>
+            <% @bookings.where(status: "pending").each do |booking|  %>
+                <div class="card-dashboard my-3">
+                  <%= cl_image_tag booking.pokemon.photo.key, height: 300, width: 120 %>
+                  <div class="card-dashboard-infos">
+                    <h2><%= booking.pokemon.name %></h2>
+                    <p>Start Date: <strong><%= booking.begin_date.to_date %></strong></p>
+                    <p>End Date: <strong><%= booking.end_date.to_date %></strong></p>
+                    <div class="dropdown-divider my-2"></div>
+                    <p class="mb-3">Status: <strong><%= booking.status.capitalize %></strong></p>
+                    <%= link_to 'Cancel', cancelled_booking_path(booking), method: :patch, class: "btn-cancel link-no-deco" %>
+                  </div>
+                  <div class="car-product-pricing">
+                    <p>Total price:</p>
+                    <h2>€<%= booking.total_price %></h2>
+                  </div>
+                </div>
+          <% end %>
+      </div>
+      <div class="accepted-bookings col-12 col-lg-6">
+        <h4 class="text-left mt-2">Coming(<%= @bookings.where(status: "accepted").count %>)</h6>
+          <div class="dropdown-divider"></div>
+            <% @bookings.where(status: "accepted").each do |booking|  %>
+                <div class="card-dashboard my-3">
+                  <%= cl_image_tag booking.pokemon.photo.key, height: 300, width: 120 %>
+                  <div class="card-dashboard-infos">
+                    <h2><%= booking.pokemon.name %></h2>
+                    <p>Start Date: <strong><%= booking.begin_date.to_date %></strong></p>
+                    <p>End Date: <strong><%= booking.end_date.to_date %></strong></p>
+                    <div class="dropdown-divider my-2"></div>
+                    <p class="mb-3">Status: <strong><%= booking.status.capitalize %></strong></p>
+                  </div>
+                  <div class="car-product-pricing">
+                    <p>Total price:</p>
+                    <h2>€<%= booking.total_price %></h2>
+                  </div>
+                </div>
+          <% end %>
+      </div>
+    </div>
+  <%# Liste de mes pokemons %>
+    <h2 class="text-left cards-home-title my-5">All my <strong>Pokemons</strong> (<%= @pokemons.count %>)</h2>
+    <div class="cards">
+      <% @pokemons.each do |pokemon| %>
+        <%= link_to pokemon, class: "link-no-deco" do %>
+          <div class="card-product my-3">
+            <%= cl_image_tag pokemon.photo.key, height: 300, width: 120 %>
+            <div class="card-product-infos">
+              <h2><%= pokemon.name %></h2>
+              <p>Type: <strong><%= pokemon.element.capitalize%></strong></p>
+              <div class="dropdown-divider my-2"></div>
+              <p><i class="fa-solid fa-venus-mars"></i> <%= pokemon.gender.capitalize %></p>
+              <p><strong><%= pokemon.height.round %></strong>cm | <strong><%= pokemon.weight.round %></strong>kg</p>
+              <p>Personality: <strong><%= pokemon.personality.capitalize%></strong></p>
+            </div>
+            <div class="car-product-pricing">
+              <h2>€<%= pokemon.day_price %></h2>
+              <p>/per day</p>
+            </div>
+          </div>
         <% end %>
-      <% end %>
-    </ul>
-</div>
-
-<%# Liste de mes demandes de locations %>
-<div class="container">
-  <h2 class="text-left cards-home-title my-5">My rent <strong>Requests<strong></h2>
-    <ul>
-      <% @bookings.where(status: "pending").each do |booking|  %>
-        <li><%= booking.pokemon.name %> <%= booking.status %> <%= booking.begin_date %> <%= booking.end_date %></li>
-        <%= link_to 'Cancel', cancelled_booking_path(booking), method: :patch %>
-      <% end %>
-    </ul>
-</div>
-
-<%# Liste de mes pokemons %>
-<div class="container">
-  <h2 class="text-left cards-home-title my-5">All my <strong>Pokemons<strong></h2>
-  <div class="cards">
-    <% @pokemons.each do |pokemon| %>
-      <%= link_to pokemon, class: "link-no-deco" do %>
-        <div class="card-product my-3">
-          <%= cl_image_tag pokemon.photo.key, height: 300, width: 120 %>
-          <div class="card-product-infos">
-            <h2><%= pokemon.name %></h2>
-            <p>Type: <strong><%= pokemon.element.capitalize%></strong></p>
-            <div class="dropdown-divider my-2"></div>
-            <p><i class="fa-solid fa-venus-mars"></i> <%= pokemon.gender.capitalize %></p>
-            <p><strong><%= pokemon.height.round %></strong>cm | <strong><%= pokemon.weight.round %></strong>kg</p>
-            <p>Personality: <strong><%= pokemon.personality.capitalize%></strong></p>
-          </div>
-          <div class="car-product-pricing">
-            <h2>€<%= pokemon.day_price %></h2>
-            <p>/per day</p>
-          </div>
-        </div>
       <% end %>
     <%= link_to pokemon_path(pokemon),
     method: :delete,

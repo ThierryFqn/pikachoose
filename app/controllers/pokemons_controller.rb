@@ -3,11 +3,22 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+    @markers = @pokemons.geocoded.map do |pokemon|
+      {
+        lat: pokemon.latitude,
+        lng: pokemon.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { pokemon: pokemon }),
+        image_url: helpers.asset_url("poke.png")
+      }
+    end
   end
 
   def show
     @pokemon = Pokemon.find(params[:id])
     @user = @pokemon.user
+    @booking = Booking.new
+    @booking.pokemon = @pokemon
+    authorize @booking
     authorize @pokemon
   end
 
@@ -52,6 +63,6 @@ class PokemonsController < ApplicationController
   private
 
   def pokemon_params
-    params.require(:pokemon).permit(:name, :day_price, :height, :weight, :gender, :element, :personality, :description, :photo)
+    params.require(:pokemon).permit(:name, :day_price, :height, :weight, :gender, :element, :personality, :description, :photo, :address)
   end
 end

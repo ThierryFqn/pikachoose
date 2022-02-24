@@ -15,13 +15,15 @@
       <%= cl_image_tag @pokemon.photo.key, width: 200 %>
       <div class="basic-infos">
         <p>Type: <strong><%= @pokemon.element.capitalize%></strong></p>
+        <p>Personality: <strong><%= @pokemon.personality.capitalize%></strong></p>
         <p><i class="fa-solid fa-venus-mars"></i> <%= @pokemon.gender.capitalize %></p>
          <p><i class="fa-solid fa-up-down"></i> <%= @pokemon.height.round %>cm</p>
          <p><i class="fa-solid fa-weight-scale"></i> <%= @pokemon.weight.round %>kg</p>
       </div>
       <div class="details-infos">
-        <p>Personality: <strong><%= @pokemon.personality.capitalize%></strong></p>
+        <p>Owner: <strong><%= @user.first_name %></strong> <strong><%= @user.last_name.capitalize %></p></strong>
         <p>Description: <strong><%= @pokemon.description.capitalize%></strong></p>
+
         <h4 id="pokemon-price">€<%= @pokemon.day_price %><small>/ per day</small></h2>
         <% if policy(@pokemon).edit? %>
           <%= link_to "Edit", edit_pokemon_path(@pokemon)  %>
@@ -33,10 +35,21 @@
           <% end %>
       </div>
     </div>
-    <div class="user-infos col-sm-12 col-md-4">
-      <h3><%= @pokemon.name %>' <span>Owner</span></h3>
-      <div class="dropdown-divider my-3"></div>
-      <p><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></p>
+    <div class="booking-form col-sm-12 col-md-4">
+    <h3>Book your pokemon</h3>
+      <%= simple_form_for [@pokemon, @booking] do |f| %>
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <%= f.input :begin_date, label: "Start", as: :string, required: false, input_html: {class: "datepicker"} %>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <%= f.input :end_date, label: "End", as: :string, required: false, input_html: {class: "datepicker"} %>
+          </div>
+          <p>Total price =  <%= @booking.total_price %> €</p>
+        </div>
+        <%= f.submit "Book my pokemon", class: "btn btn-flat mb-4" %>
+      <% end %>
     </div>
   </div>
+
 </div>
