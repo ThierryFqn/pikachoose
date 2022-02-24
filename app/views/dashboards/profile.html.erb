@@ -101,7 +101,7 @@
     </div>
   <%# Liste de mes pokemons %>
     <h2 class="text-left cards-home-title my-5">All my <strong>Pokemons</strong> (<%= @pokemons.count %>)</h2>
-    <div class="cards">
+    <div class="cards p-0">
       <% @pokemons.each do |pokemon| %>
         <%= link_to pokemon, class: "link-no-deco" do %>
           <div class="card-product my-3">

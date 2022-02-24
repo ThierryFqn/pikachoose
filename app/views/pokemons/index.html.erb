@@ -6,13 +6,13 @@
   </div>
 </div>
 
-<div class="container">
+<div class="cards-container">
   <div class="cards">
     <% @pokemons.each do |pokemon| %>
       <%= link_to pokemon, class: "link-no-deco" do %>
-        <div class="card-product my-3">
+        <div class="card-index my-3">
           <%= cl_image_tag pokemon.photo.key, height: 300, width: 120 %>
-          <div class="card-product-infos">
+          <div class="card-index-infos">
             <h2><%= pokemon.name.capitalize %></h2>
             <p>Type: <strong><%= pokemon.element.capitalize%></strong></p>
             <div class="dropdown-divider my-2"></div>
@@ -20,7 +20,7 @@
             <p><strong><%= pokemon.height.round %></strong>cm | <strong><%= pokemon.weight.round %></strong>kg</p>
             <p>Personality: <strong><%= pokemon.personality.capitalize%></strong></p>
           </div>
-          <div class="car-product-pricing">
+          <div class="car-index-pricing">
             <h2>€<%= pokemon.day_price %></h2>
             <p>/per day</p>
           </div>
@@ -28,9 +28,9 @@
       <% end %>
     <% end %>
   </div>
-    <div style="width: 50%; height: 300px;"
-    data-controller="mapbox"
-    data-mapbox-markers-value="<%= @markers.to_json %>"
-    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
+  <div id="map"
+  data-controller="mapbox"
+  data-mapbox-markers-value="<%= @markers.to_json %>"
+  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>
