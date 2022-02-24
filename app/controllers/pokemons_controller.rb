@@ -5,12 +5,20 @@ class PokemonsController < ApplicationController
     @pokemons = policy_scope(Pokemon).order(created_at: :desc)
 
     if params[:search].present?
-      # sql_query = "personality IN (:personalities) AND address ILIKE :address"
+      if search_params[:personalities].reject(&:empty?).present? && search_params[:address].present?
+        @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+                                         .where(personality: search_params[:personalities].reject(&:empty?))
+                                         .and(policy_scope(Pokemon).where("address ILIKE ?", "%#{search_params[:address]}%"))
 
-      @pokemons = policy_scope(Pokemon).order(created_at: :desc)
-                                       .where(personality: search_params[:personalities])
-                                       .where(address: search_params[:address].capitalize)
-      @location = search_params[:address]
+      elsif search_params[:personalities].reject(&:empty?).present? && !search_params[:address].present?
+        @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+                                         .where(personality: search_params[:personalities].reject(&:empty?))
+
+      elsif !search_params[:personalities].reject(&:empty?).present? && search_params[:address].present?
+        @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+                                         .where("address ILIKE ?", "%#{search_params[:address]}%")
+      end
+
     else
       @pokemons = policy_scope(Pokemon).order(created_at: :desc)
     end
@@ -23,7 +31,6 @@ class PokemonsController < ApplicationController
         image_url: helpers.asset_url("poke.png")
       }
     end
-
   end
 
   def show

@@ -100,10 +100,11 @@
       </div>
     </div>
   <%# Liste de mes pokemons %>
-    <h2 class="text-left cards-home-title my-5">All my <strong>Pokemons</strong> (<%= @pokemons.count %>)</h2>
-    <div class="cards p-0">
-      <% @pokemons.each do |pokemon| %>
-        <%= link_to pokemon, class: "link-no-deco" do %>
+  <h2 class="text-left cards-home-title my-5">All my <strong>Pokemons</strong> (<%= @pokemons.count %>)</h2>
+  <div class="cards p-0">
+    <% @pokemons.each do |pokemon| %>
+    <div class="cross-div">
+      <%= link_to pokemon, class: "link-no-deco" do %>
           <div class="card-product my-3">
             <%= cl_image_tag pokemon.photo.key, height: 300, width: 120 %>
             <div class="card-product-infos">
@@ -119,13 +120,14 @@
               <p>/per day</p>
             </div>
           </div>
-        <% end %>
           <%= link_to pokemon_path(pokemon),
           method: :delete,
           data: { confirm: "Are you sure?" } do %>
           <%# <i class=“far fa-times-circle”></i> %>
           <i class="fa-solid fa-circle-xmark"></i>
-        <% end %>
+          <% end %>
       <% end %>
+    <% end %>
+    </div>
   </div>
 </div>
