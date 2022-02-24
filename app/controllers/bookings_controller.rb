@@ -1,13 +1,4 @@
 class BookingsController < ApplicationController
-
-  def new
-    @booking = Booking.new
-    @pokemon = Pokemon.find(params[:pokemon_id])
-    @booking.pokemon = @pokemon
-    authorize @booking
-    authorize @pokemon
-  end
-
   def create
     @booking = Booking.new(booking_params)
     @pokemon = Pokemon.find(params[:pokemon_id])
@@ -19,10 +10,41 @@ class BookingsController < ApplicationController
     authorize @pokemon
     if @booking.save
       flash[:notice] = 'Your request has been sent'
-      redirect_to root_path
+      redirect_to dashboards_path
       # redirect_to booking_path(@booking)
     else
       render :new
+    end
+  end
+
+  def accepted
+    @booking = Booking.find(params[:id])
+    @booking.status = Booking::BOOKING_STATUS[0]
+    authorize @booking
+    if @booking.save
+      redirect_to dashboards_path
+      flash[:notice] = 'You have accepted the demand'
+    end
+  end
+
+  def denied
+    @booking = Booking.find(params[:id])
+    @booking.status = Booking::BOOKING_STATUS[1]
+    authorize @booking
+    if @booking.save
+      redirect_to dashboards_path
+      flash[:notice] = 'You have denied the demand'
+    end
+  end
+
+  # Pas encore implementé
+  def cancelled
+    @booking = Booking.find(params[:id])
+    @booking.status = Booking::BOOKING_STATUS[2]
+    authorize @booking
+    if @booking.save
+      redirect_to dashboards_path
+      flash[:notice] = 'You have cancelled your request'
     end
   end
 

@@ -1,6 +1,6 @@
-.card-product {
+.card-dashboard {
   overflow: hidden;
-  height: 230px;
+  height: 200px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -16,20 +16,20 @@
   }
 }
 
-.card-product img {
+.card-dashboard img {
   height: 100%;
   width: 200px;
   object-fit: contain;
   padding: 20px;
 }
 
-.card-product h2 {
+.card-dashboard h2 {
   font-size: 24px;
   font-weight: bold;
   margin: 0;
 }
 
-.card-product p {
+.card-dashboard p {
   font-size: 14px;
   line-height: 1.4;
   opacity: .7;
@@ -37,11 +37,11 @@
   margin-top: 8px;
 }
 
-.card-product .card-product-infos {
+.card-dashboard .card-dashboard-infos {
   padding: 16px;
 }
 
-.card-product .car-product-pricing {
+.card-dashboard .car-product-pricing {
   position: absolute;
   top: 10px;
   right: 20px;

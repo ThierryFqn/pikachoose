@@ -6,6 +6,10 @@ class BookingPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    true
+  end
+
   def create?
     # record.pokemon.user != user
     true
@@ -13,5 +17,17 @@ class BookingPolicy < ApplicationPolicy
 
   def new?
     create?
+  end
+
+  def accepted?
+    true
+  end
+
+  def denied?
+    true
+  end
+
+  def cancelled?
+    true
   end
 end
