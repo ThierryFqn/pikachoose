@@ -13,6 +13,9 @@ require "nokogiri"
 User.create(first_name: 'Meli', last_name: 'cookie', email: 'cookie@gmail.com', password: '123456')
 User.create(first_name: 'Sacha', last_name: 'Ketchum', email: 'sacha@gmail.com', password: '123456')
 
+Pokemon.destroy_all
+User.destroy_all
+
 10.times do
   User.create!(
     first_name: Faker::Name.first_name,
@@ -44,7 +47,8 @@ User.create(first_name: 'Sacha', last_name: 'Ketchum', email: 'sacha@gmail.com',
       gender: Pokemon::POKEMON_GENDERS.sample,
       element: Pokemon::POKEMON_TYPES.sample,
       personality: Pokemon::POKEMON_PERSONALITIES.sample,
-      description: Faker::Emotion.adjective
+      description: Faker::Emotion.adjective,
+      address: "#{rand(1..30)} #{Pokemon::POKEMON_STREET.sample}"
   )
   file = URI.open(img_pokemon)
   pokemon.photo.attach(io: file, filename: "#{name}.jpg", content_type: 'image/png')
