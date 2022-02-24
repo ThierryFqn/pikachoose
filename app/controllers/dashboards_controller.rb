@@ -14,4 +14,6 @@ class DashboardsController < ApplicationController
   def select(state)
     @booking_pokemons_user.select { |booking| booking.user != current_user && booking.status == state }
   end
+
+
 end

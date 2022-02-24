@@ -120,6 +120,12 @@
             </div>
           </div>
         <% end %>
+    <%= link_to pokemon_path(pokemon),
+    method: :delete,
+    data: { confirm: "Are you sure?" } do %>
+      <%# <i class=“far fa-times-circle”></i> %>
+      <i class="fa-solid fa-circle-xmark"></i>
+    <% end %>
       <% end %>
-    </div>
+  </div>
 </div>

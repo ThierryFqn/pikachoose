@@ -1,13 +1,4 @@
 class BookingsController < ApplicationController
-
-  def new
-    @booking = Booking.new
-    @pokemon = Pokemon.find(params[:pokemon_id])
-    @booking.pokemon = @pokemon
-    authorize @booking
-    authorize @pokemon
-  end
-
   def create
     @booking = Booking.new(booking_params)
     @pokemon = Pokemon.find(params[:pokemon_id])
