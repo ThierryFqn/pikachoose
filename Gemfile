@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 # gem faker
 gem 'faker', '~> 2.19'
 
+# gem geocoder
+gem "geocoder"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
