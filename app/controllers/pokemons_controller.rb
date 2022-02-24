@@ -14,8 +14,8 @@ class PokemonsController < ApplicationController
       # @location = search_params[:address]
     else
       @pokemons = policy_scope(Pokemon).order(created_at: :desc)
-    end 
-    
+    end
+
     @markers = @pokemons.geocoded.map do |pokemon|
       {
         lat: pokemon.latitude,
@@ -44,11 +44,8 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
     authorize @pokemon
-    @user = current_user
-    @pokemon = Pokemon.new(pokemon_params)
-    @pokemon.user = @user
     if @pokemon.save
-      redirect_to root_path
+      redirect_to pokemon_path(@pokemon)
     else
       render :new
     end
