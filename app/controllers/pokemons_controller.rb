@@ -3,6 +3,19 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+
+    if params[:search].present?
+      # sql_query = "personality IN (:personalities) AND address ILIKE :address"
+
+      @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+                                       .where(personality: search_params[:personalities])
+                                      #  ajout adress lorsque migration OK
+                                      # .where(address: search_params[:address])
+      # @location = search_params[:address]
+    else
+      @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+    end 
+    
     @markers = @pokemons.geocoded.map do |pokemon|
       {
         lat: pokemon.latitude,
@@ -64,5 +77,9 @@ class PokemonsController < ApplicationController
 
   def pokemon_params
     params.require(:pokemon).permit(:name, :day_price, :height, :weight, :gender, :element, :personality, :description, :photo, :address)
+  end
+
+  def search_params
+    params.require(:search).permit(:address, personalities:[])
   end
 end
