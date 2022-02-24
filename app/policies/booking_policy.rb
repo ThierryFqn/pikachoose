@@ -9,7 +9,7 @@ class BookingPolicy < ApplicationPolicy
   def show?
     true
   end
-  
+
   def create?
     # record.pokemon.user != user
     true
