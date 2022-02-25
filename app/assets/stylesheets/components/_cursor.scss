@@ -1,0 +1,46 @@
+.round-cursor {
+  position: relative;
+  height: 40px;
+  width: 40px;
+}
+.cursor-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border: 3px solid black;
+  background: white;
+  border-radius: 100%;
+}
+.half-circle {
+    width: 40px;
+    height: 20px; /* as the half of the width */
+    background-color: transparent;
+    border-top-left-radius: 110px;  /* 100px of height + 10px of border */
+    border-top-right-radius: 110px; /* 100px of height + 10px of border */
+    border: 3px solid black;
+    transform: rotate(180deg);
+    background-color: white;
+}
+.half-circle-black {
+    width: 40px;
+    height: 20px; /* as the half of the width */
+    background-color: red;
+    border-top-left-radius: 110px;  /* 100px of height + 10px of border */
+    border-top-right-radius: 110px; /* 100px of height + 10px of border */
+    border: 3px solid black;
+    border-bottom: 0;
+}
+
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+}
+
+a:hover .half-circle {
+  margin: 10px;
+}
