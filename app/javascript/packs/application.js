@@ -7,15 +7,21 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import { initFlatpickr } from "../plugins/flatpickr";
 
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import { initFlatpickr } from "../plugins/flatpickr";
+// import { initSelect2 } from '../components/init_select2';
+import 'select2/dist/css/select2.min.css';
 import "controllers"
 import "bootstrap"
+
 document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
+  // initSelect2();
 });
+
+// app/javascript/packs/application.js

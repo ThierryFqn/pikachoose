@@ -18,6 +18,13 @@ class Pokemon < ApplicationRecord
   validates :personality, inclusion: { in: POKEMON_PERSONALITIES, message: "Please select a valid personality" }
   validates :height, :weight, numericality: { greater_than: 0 }
   validates :day_price, numericality: { only_integer: true }
+
+  before_save :attach_photo
+
+  def attach_photo
+    return if photo.attached?
+    self.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/poke.png')), filename: 'poke')
+  end
 end
 
 # api_key_mel=pk.eyJ1IjoibWVsaXNzYWdhdGVhdTEiLCJhIjoiY2t6aDBja2V3MTYxZzJubnkwMDYxcHhoMSJ9.nMF_YE0lIzoIGLyL_lQLHg

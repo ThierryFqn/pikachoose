@@ -3,7 +3,7 @@
     <h1>Hi, I'm <strong><%= @pokemon.name %></strong></h1>
     <p>You can find more information about me below</p>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
-    <%= link_to "Book me", new_pokemon_booking_path(@pokemon), class: "btn btn-flat" %>
+    <%# <%= link_to "Book me", new_pokemon_booking_path(@pokemon), class: "btn btn-flat" %>
     <%= link_to "Back", pokemons_path, class: "btn btn-ghost-white" %>
     </div>
   </div>
@@ -13,44 +13,60 @@
 
   <div class="row my-5">
     <div class="pokemon-infos col-sm-12 col-md-8">
+      <div>
       <%= cl_image_tag @pokemon.photo.key, width: 200 %>
+      </div>
       <div class="basic-infos">
-        <p>Type: <strong><%= @pokemon.element.capitalize%></strong></p>
-        <p>Personality: <strong><%= @pokemon.personality.capitalize%></strong></p>
+        <h4 class="mb-4"> <mark class="p-2"><strong><%= @pokemon.name.capitalize%></strong> </mark></h4>
         <p><i class="fa-solid fa-venus-mars"></i> <%= @pokemon.gender.capitalize %></p>
          <p><i class="fa-solid fa-up-down"></i> <%= @pokemon.height.round %>cm</p>
          <p><i class="fa-solid fa-weight-scale"></i> <%= @pokemon.weight.round %>kg</p>
       </div>
       <div class="details-infos">
+        <p>Type: <strong><%= @pokemon.element.capitalize%></strong></p>
+        <p>Personality: <strong><%= @pokemon.personality.capitalize%></strong></p>
         <p>Owner: <strong><%= @user.first_name %></strong> <strong><%= @user.last_name.capitalize %></p></strong>
         <p>Description: <strong><%= @pokemon.description.capitalize%></strong></p>
+        <!-- <h4 id="pokemon-price">€<%= @pokemon.day_price %><small>/ per day</small></h2>-->
 
-        <h4 id="pokemon-price">€<%= @pokemon.day_price %><small>/ per day</small></h2>
-        <% if policy(@pokemon).edit? %>
-          <%= link_to "Edit", edit_pokemon_path(@pokemon)  %>
-        <% end %>
-          <% if policy(@pokemon).destroy? %>
-            <%= link_to "Delete", pokemon_path(@pokemon),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-          <% end %>
       </div>
     </div>
-    <div class="booking-form col-sm-12 col-md-4">
-    <h3>Book your pokemon</h3>
-      <%= simple_form_for [@pokemon, @booking] do |f| %>
-        <div class="row">
-          <div class="col-sm-12 col-md-6">
-            <%= f.input :begin_date, label: "Start", as: :string, required: false, input_html: {class: "datepicker"} %>
+      <% if @pokemon.user == current_user %>
+        <div class="booking-form col-sm-12 col-md-4">
+        <h3 class="mb-2">I'm yours, missed me ?</h3>
+        <p>You can update my information.</p>
+          <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-4">
+              <%= link_to "Edit", edit_pokemon_path(@pokemon), class:'btn-cancel link-no-deco' %>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <%= link_to "Delete", pokemon_path(@pokemon),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" }, class:'btn-red link-no-deco' %>
+            </div>
           </div>
-          <div class="col-sm-12 col-md-6">
-            <%= f.input :end_date, label: "End", as: :string, required: false, input_html: {class: "datepicker"} %>
-          </div>
-          <p>Total price =  <%= @booking.total_price %> €</p>
         </div>
-        <%= f.submit "Book my pokemon", class: "btn btn-flat mb-4" %>
       <% end %>
+    <% if @pokemon.user != current_user %>
+      <div class="booking-form col-sm-12 col-md-4">
+      <h3 class="mb-3">Ready to book <%= @pokemon.name  %>?</h3>
+        <%= simple_form_for [@pokemon, @booking] do |f| %>
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <%= f.input :begin_date, label: "From:", placeholder:"Start date", as: :string, required: false, input_html: {class: "datepicker"} %>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <%= f.input :end_date, label: "To:", placeholder:"End date", as: :string, required: false, input_html: {class: "datepicker"} %>
+            </div>
+            <p class="price-align-left mb-0">Day price: <strong><%= @pokemon.day_price %>€</strong></p>
+            <p class="my-0 price-align-left">__________</p>
+            <h4 class="mt-2 mb-3 price-align-left">Total price =  <%= @booking.total_price %> €</h4>
+          </div>
+          <%= f.submit "Book", class: "w-100 btn btn-flat mb-2" %>
+          <p class="mb-1 text-center"><small>You won't be charged yet</small></p>
+        <% end %>
+      </div>
     </div>
+    <% end %>
   </div>
-
 </div>

@@ -3,6 +3,26 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+
+    if params[:search].present?
+      if search_params[:personalities].reject(&:empty?).present? && search_params[:address].present?
+        @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+                                         .where(personality: search_params[:personalities].reject(&:empty?))
+                                         .and(policy_scope(Pokemon).where("address ILIKE ?", "%#{search_params[:address]}%"))
+
+      elsif search_params[:personalities].reject(&:empty?).present? && !search_params[:address].present?
+        @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+                                         .where(personality: search_params[:personalities].reject(&:empty?))
+
+      elsif !search_params[:personalities].reject(&:empty?).present? && search_params[:address].present?
+        @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+                                         .where("address ILIKE ?", "%#{search_params[:address]}%")
+      end
+
+    else
+      @pokemons = policy_scope(Pokemon).order(created_at: :desc)
+    end
+
     @markers = @pokemons.geocoded.map do |pokemon|
       {
         lat: pokemon.latitude,
@@ -31,11 +51,8 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
     authorize @pokemon
-    @user = current_user
-    @pokemon = Pokemon.new(pokemon_params)
-    @pokemon.user = @user
     if @pokemon.save
-      redirect_to root_path
+      redirect_to pokemon_path(@pokemon)
     else
       render :new
     end
@@ -64,5 +81,9 @@ class PokemonsController < ApplicationController
 
   def pokemon_params
     params.require(:pokemon).permit(:name, :day_price, :height, :weight, :gender, :element, :personality, :description, :photo, :address)
+  end
+
+  def search_params
+    params.require(:search).permit(:address, personalities:[])
   end
 end

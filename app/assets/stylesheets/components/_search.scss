@@ -2,23 +2,66 @@
   position: relative;
   width: 70%;
   margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .search-form-control .btn {
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  right: 8px;
+
 }
 
 .search-form-control .form-control {
   height: 3.5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   border: 1px solid #E7E7E7;
+  background:white;
+  font-family: 'Saira Condensed';
+  font-weight: 300;
+  font-size: 1.2em;
 }
 
 .search-form-control .form-control:focus {
   border: 1px solid #1EDD88;
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.select2-selection__choice {
+  background-color: $yellowpika !important;
+  margin-top: 14px !important;
+  span {
+    color: black;
+  }
+}
+
+
+.query-selectors {
+  justify-content: space-between;
+  & > div {
+    margin:0 !important;
+  }
+  & .search_address {
+    width: 20%;
+  }
+
+  & .search_personalities {
+    width: 70%;
+  }
+
+  & > input {
+    width: 10%;
+  }
+}
+
+.select2-container {
+  height: 3.5rem;
+  box-shadow: 0 0px 0px rgba(0,0,0,0);
+  border: 0px solid transparent;
+  width: 100%;
+  z-index:1000;
+}
+
+.select2-selection {
+  border: 0px solid transparent !important;
 }
