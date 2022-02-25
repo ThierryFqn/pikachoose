@@ -10,4 +10,11 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   # Validates
   validates :first_name, :last_name, presence: true
+
+  before_save :attach_photo
+
+  def attach_photo
+    return if photo.attached?
+    self.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/sacha.jpeg')), filename: 'Sacha')
+  end
 end
