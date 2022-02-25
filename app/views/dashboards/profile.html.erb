@@ -3,9 +3,9 @@
     <h1>Hi <strong><%= @user.first_name.capitalize %></strong></h1>
     <p>Welcome to your dashboard</p>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
-
+    <%= link_to edit_user_registration_path do %>
      <%= cl_image_tag current_user.photo.key, crop: :fill, width: 200, class: "user-img-dashboard"%>
-
+    <% end %>
   </div>
 </div>
 
