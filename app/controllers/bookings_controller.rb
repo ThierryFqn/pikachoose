@@ -55,6 +55,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_price(booking)
-    (booking.end_date.to_date - booking.begin_date.to_date).to_i * booking.pokemon.day_price
+    ((booking.end_date.to_date - booking.begin_date.to_date).to_i + 1) * booking.pokemon.day_price
   end
 end
