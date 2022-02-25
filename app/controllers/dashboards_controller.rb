@@ -9,11 +9,13 @@ class DashboardsController < ApplicationController
     @demand_accepted_user = select("accepted")
   end
 
+  def my_profile
+    skip_authorization
+  end
+
   private
 
   def select(state)
     @booking_pokemons_user.select { |booking| booking.user != current_user && booking.status == state }
   end
-
-
 end
