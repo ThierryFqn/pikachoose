@@ -1,8 +1,11 @@
 <div class="page-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dlwr1bikm/image/upload/v1645468248/development/background_pokemon_mifddl.png);">
   <div class="container">
-    <h1>Hi <strong><%= @user.first_name %></strong></h1>
+    <h1>Hi <strong><%= @user.first_name.capitalize %></strong></h1>
     <p>Welcome to your dashboard</p>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+
+     <%= cl_image_tag current_user.photo.key, crop: :fill, width: 200, class: "user-img-dashboard"%>
+
   </div>
 </div>
 
