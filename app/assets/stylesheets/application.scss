@@ -16,3 +16,8 @@
 @import "flatpickr/dist/flatpickr";
 
 @import 'select2/dist/css/select2';
+
+
+html, body, h1, h2, h3, p, a {
+  cursor: none !important;
+}
