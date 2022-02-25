@@ -26,5 +26,3 @@ class Pokemon < ApplicationRecord
     self.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/poke.png')), filename: 'poke')
   end
 end
-
-# api_key_mel=pk.eyJ1IjoibWVsaXNzYWdhdGVhdTEiLCJhIjoiY2t6aDBja2V3MTYxZzJubnkwMDYxcHhoMSJ9.nMF_YE0lIzoIGLyL_lQLHg
