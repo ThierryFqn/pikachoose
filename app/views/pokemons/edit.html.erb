@@ -1,7 +1,7 @@
 <div class="page-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dlwr1bikm/image/upload/v1645473081/development/pokemon-user-background_fkkm6k.png);">
   <div class="container">
-    <h1><strong>Add</strong> my Pokemon</h1>
-    <p>Please fill in all the information</p>
+    <h1><strong>Update</strong> my Pokemon</h1>
+    <p>Please feel free to add or update your pokemon's information</p>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
   </div>
 </div>
@@ -10,7 +10,7 @@
   <div class="col-6 offset-3 mt-3">
     <%= simple_form_for(@pokemon) do |f| %>
       <div class="form-group">
-        <h3>Information about your Pokemon</h3>
+        <%# <h3>Information about your Pokemon</h3> %>
           <%= f.input :name %>
           <div class="row">
             <div class="col">

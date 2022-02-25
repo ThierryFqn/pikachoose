@@ -1,19 +1,27 @@
 <div class="page-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dlwr1bikm/image/upload/v1645473081/development/pokemon-user-background_fkkm6k.png);">
   <div class="container">
-    <h1><strong>Add</strong> my Pokemon</h1>
-    <p>Please fill in all the information</p>
+    <h1><strong>Update</strong> your Profile</h1>
+    <p>Please feel free to add or update your information</p>
     <%# <a class="btn btn-flat" href="#">Apply now</a> %>
   </div>
 </div>
 
 <div class="container">
   <div class="col-6 offset-3 mt-3">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
       <div class="form-inputs">
+         <div class="row">
+          <div class="col">
+            <%= f.input :first_name, placeholder: 'Sacha' %>
+          </div>
+          <div class="col">
+            <%= f.input :last_name, placeholder: 'Ketchum'%>
+          </div>
+        </div>
+        <%= f.input :photo, as: :file %>
         <%= f.input :email, required: true, autofocus: true %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -34,7 +42,7 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Update" %>
+        <%= f.submit "Update your Profile", class: "btn btn-flat mb-4" %>
       </div>
     <% end %>
 
@@ -42,6 +50,6 @@
 
     <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-    <%= link_to "Back", :back %>
+    <%#= link_to "Back", :back %>
   </div>
 </div>
