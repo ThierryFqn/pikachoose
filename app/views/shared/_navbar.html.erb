@@ -19,6 +19,7 @@
                 <%= link_to "Add a new Pokemon", new_pokemon_path, class: "dropdown-item" %>
               <% end %>
               <%= link_to "My Dahsboard", dashboards_path, class: "dropdown-item" %>
+              <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
