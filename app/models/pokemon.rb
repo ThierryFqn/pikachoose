@@ -7,7 +7,8 @@ class Pokemon < ApplicationRecord
   POKEMON_GENDERS = %w[male female asexual]
   POKEMON_PERSONALITIES = %w[brave calm quiet docile rash gentle careful relaxing timid athlete smart]
   POKEMON_STREET = ["rue de l'eglise", "Place de l'eglise", "Grande Rue", "Rue du Moulin", "Place de la Mairie", "Rue du Château", "Rue des Écoles", "Rue de la Gare", "Rue de la Mairie", "rue principale"]
-  POKEMON_CITY = %w[Nice Paris Lille Marseille Lens Bordeaux Lyon Touloue Brest Poitier Mulhouse Perpignan Grenoble Dijon]
+  POKEMON_CITY = %w[Paris Marseille Lyon Toulouse Nice Nantes Montpellier Strasbourg Bordeaux Lille Rennes Reims Saint-Étienne Toulon Grenoble Dijon Angers Nîmes Villeurbanne Bruxelles Barcelone Berlin Liège Bruges Anvers]
+
   belongs_to :user
   # ActiveStorage Cloudinary
   has_one_attached :photo

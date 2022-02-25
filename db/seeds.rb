@@ -36,9 +36,8 @@ url = "https://www.pokemontrash.com/pokedex/liste-pokemon.php#gen1"
 html_file = URI.open(url).read
 html_doc = Nokogiri::HTML(html_file)
 
-html_doc.search(".pokedex").last.search("tbody > tr").first(50).each do |pokemon|
+html_doc.search(".pokedex").last.search("tbody > tr").first(25).each do |pokemon|
     name = pokemon.search('td')[2].text.strip
-
     element = pokemon.search('.type1').text.strip
     if Pokemon::FRENCH_POKEMON_TYPES.include?(element.downcase)
       index = Pokemon::FRENCH_POKEMON_TYPES.index(element.downcase)
@@ -60,9 +59,9 @@ html_doc.search(".pokedex").last.search("tbody > tr").first(50).each do |pokemon
       element: final_element,
       personality: Pokemon::POKEMON_PERSONALITIES.sample,
       description: Faker::Emotion.adjective,
-      address: "#{rand(1..30)} #{Pokemon::POKEMON_STREET.sample}"
+      address: Pokemon::POKEMON_CITY.shuffle!.pop
     )
-    puts "Create #{pokemon.name}"
+    puts "Create #{pokemon.name} type: #{pokemon.element}, address: #{pokemon.address}"
     file = URI.open(img_pokemon)
     pokemon.photo.attach(io: file, filename: "#{name}.jpg", content_type: 'image/png')
 end
