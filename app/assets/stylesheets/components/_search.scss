@@ -18,7 +18,7 @@
   background:white;
   font-family: 'Saira Condensed';
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 16px !important;
 }
 
 .search-form-control .form-control:focus {
@@ -29,7 +29,7 @@
 
 .select2-selection__choice {
   background-color: $yellowpika !important;
-  margin-top: 14px !important;
+  // margin-top: 14px !important;
   span {
     color: black;
   }
@@ -65,3 +65,23 @@
 .select2-selection {
   border: 0px solid transparent !important;
 }
+
+.select2-search__field{
+  margin-top: 17px !important;
+  font-family: 'Saira Condensed' !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
+}
+
+
+// .select2-container--default .select2-search--inline .select2-search__field {
+//   font-family: 'Saira Condensed' !important;
+//   font-weight: 300 !important;
+//   font-size: 1.2em !important;
+//   padding-bottom: 5px !important;
+// }
+
+// .select2-container--default .select2-search--inline .select2-search__field {
+//   height: 100% !important;
+//   // margin-top: 14px !important;
+// }

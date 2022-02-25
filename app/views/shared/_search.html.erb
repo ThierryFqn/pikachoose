@@ -5,7 +5,7 @@
     <%= simple_form_for :search, url: pokemons_path, method: :get do |f| %>
       <div class="d-flex query-selectors">
         <%= f.input :address, placeholder: "Add a city...",class: "form-control string required", label: false %>
-        <%= f.input :personalities, class: "js-example-placeholder-single form-control",label: false, collection: Pokemon::POKEMON_PERSONALITIES, input_html: {multiple: true, data: {controller: 'select2', select2_options_value: {tags: true}}} %>
+        <%= f.input :personalities, class: "js-example-placeholder-single form-control",label: false, collection: Pokemon::POKEMON_PERSONALITIES, input_html:  {multiple: true, data: { placeholder: "Select categories...", controller: 'select2', select2_options_value: {tags: true}}} %>
         <%# <%= f.submit "Search", class: "btn btn-flat" %>
         <button type="submit" class="btn btn-flat" name="commit" data-disable-with="Search" >
           <i class="fas fa-search"></i>
