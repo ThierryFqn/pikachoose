@@ -5,7 +5,8 @@ Le Wagon project. Application developed in 5 days to rent Pokemons.
 
 ## 🛠 Skills
 - Scraping
-- Database
+- Back-End development
+- Front-End development
 - Project Management
 
 
